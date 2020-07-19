@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+const something = [
+	{
+		id: "abc123",
+		caseId: "ABC-123",
+		startTime: new Date(),
+		unit: 1,
+		type: "Pleadings",
+	},
+	{
+		id: "bcd321",
+		caseId: "ABC-123",
+		startTime: new Date(),
+		unit: 1,
+		type: "Pleadings",
+	},
+];
+
+const newAdd = {
+	id: "zbc",
+	caseId: "ABC-123",
+	startTime: new Date(),
+	unit: 1,
+	type: "Pleadings",
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [entries, setEntries] = useState(something);
+
+	return (
+		<div className="App">
+			<header className="App-header">
+				<div className="">Time-keeping</div>
+			</header>
+			<div>Hello</div>
+			{entries.map((entry) => {
+				return (
+					<div className="Time-entry">
+						<span>{entry.startTime.getHours()}</span>
+						<span>{entry.unit}</span>
+						<span>{entry.type}</span>
+					</div>
+				);
+			})}
+			<button
+				onClick={() => {
+					setEntries([...entries, newAdd]);
+				}}
+			>
+				+
+			</button>
+		</div>
+	);
 }
 
 export default App;
