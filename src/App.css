@@ -21,7 +21,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-size: calc(10px + 2vmin);
+	font-size: calc(20px + 2vmin);
 	color: white;
 }
 
@@ -30,10 +30,15 @@
 }
 
 .Time-entry {
+	text-align: center;
 	border: #282c34 solid;
+	height: 40px;
+	padding: 10px;
+	margin: 10px 5px 10px 5px;
+	font-size: 17px;
 	display: grid;
 	grid-column-start: 1;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
 }
 
 @keyframes App-logo-spin {

@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import "./App.css";
+import dayjs from "dayjs";
 
 const something = [
 	{
 		id: "abc123",
 		caseId: "ABC-123",
 		startTime: new Date(),
-		unit: 1,
+		unit: 1.0,
 		type: "Pleadings",
 	},
 	{
 		id: "bcd321",
 		caseId: "ABC-123",
 		startTime: new Date(),
-		unit: 1,
+		unit: 0.5,
 		type: "Pleadings",
 	},
 ];
@@ -26,21 +27,36 @@ const newAdd = {
 	type: "Pleadings",
 };
 
+const Navbar = () => (
+	<header className="App-header">
+		<div className="">Time-keeping</div>
+	</header>
+);
+
 function App() {
 	const [entries, setEntries] = useState(something);
-
 	return (
 		<div className="App">
-			<header className="App-header">
-				<div className="">Time-keeping</div>
-			</header>
-			<div>Hello</div>
+			<Navbar />
 			{entries.map((entry) => {
 				return (
 					<div className="Time-entry">
-						<span>{entry.startTime.getHours()}</span>
-						<span>{entry.unit}</span>
-						<span>{entry.type}</span>
+						<div>
+							<div>
+								{dayjs(entry.startTime).hour()}:
+								{dayjs(entry.startTime).minute()}
+							</div>
+							<div>
+								{Math.round(dayjs(entry.startTime).hour() + entry.unit)}:
+								{dayjs().minute() + Math.round((entry.unit % 1) * 60)}
+							</div>
+							{/* <div>
+								{entry.startTime.setTime(entry.startTime.getHours() + 1.5)}
+							</div> */}
+						</div>
+						<div>{entry.unit}u</div>
+						<div>{entry.caseId}</div>
+						<div>{entry.type}</div>
 					</div>
 				);
 			})}
