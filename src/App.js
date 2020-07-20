@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import dayjs from "dayjs";
+import "font-awesome/css/font-awesome.min.css";
 
 const something = [
 	{
@@ -50,13 +51,13 @@ function App() {
 								{Math.round(dayjs(entry.startTime).hour() + entry.unit)}:
 								{dayjs().minute() + Math.round((entry.unit % 1) * 60)}
 							</div>
-							{/* <div>
-								{entry.startTime.setTime(entry.startTime.getHours() + 1.5)}
-							</div> */}
 						</div>
 						<div>{entry.unit}u</div>
 						<div>{entry.caseId}</div>
 						<div>{entry.type}</div>
+						<button>
+							<i className="fa fa-trash"></i>
+						</button>
 					</div>
 				);
 			})}
