@@ -14,6 +14,14 @@ const Navbar = () => (
 
 function App() {
 	const [entries, setEntries] = useState(something);
+
+	const deleteEntry = (uuid) => {
+		const arrayWithoutDeletedEntry = entries.filter((entry) => {
+			return entry.id !== uuid;
+		});
+		setEntries(arrayWithoutDeletedEntry);
+	};
+
 	return (
 		<div className="App">
 			<Navbar />
@@ -33,7 +41,7 @@ function App() {
 						<div>{entry.unit}u</div>
 						<div>{entry.caseId}</div>
 						<div>{entry.type}</div>
-						<button>
+						<button onClick={() => deleteEntry(entry.id)}>
 							<i className="fa fa-trash"></i>
 						</button>
 					</div>
