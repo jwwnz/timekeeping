@@ -40,7 +40,7 @@ function App() {
 			<Navbar />
 			{entries.map((entry) => {
 				return (
-					<div className="Time-entry">
+					<div className="Time-entry" key={entry.id}>
 						<div>
 							<div>
 								{dayjs(entry.startTime).hour()}:
