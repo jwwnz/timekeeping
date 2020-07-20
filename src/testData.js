@@ -1,13 +1,15 @@
+import { v4 as uuidv4 } from "uuid";
+
 const something = [
 	{
-		id: "abc123",
+		id: uuidv4(),
 		caseId: "ABC-123",
 		startTime: new Date(),
 		unit: 1.0,
 		type: "Pleadings",
 	},
 	{
-		id: "bcd321",
+		id: uuidv4(),
 		caseId: "ABC-123",
 		startTime: new Date(),
 		unit: 0.5,
@@ -15,12 +17,14 @@ const something = [
 	},
 ];
 
-const newAdd = {
-	id: "zbc",
-	caseId: "ABC-123",
-	startTime: new Date(),
-	unit: 1,
-	type: "Pleadings",
+const newAdd = (uuid) => {
+	return {
+		id: uuid,
+		caseId: "ABC-123",
+		startTime: new Date(),
+		unit: 1,
+		type: "Pleadings",
+	};
 };
 
 export { something, newAdd };

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import dayjs from "dayjs";
 import "font-awesome/css/font-awesome.min.css";
+import { v4 as uuidv4 } from "uuid";
+
 import { something, newAdd } from "./testData.js";
 
 const Navbar = () => (
@@ -39,7 +41,7 @@ function App() {
 			})}
 			<button
 				onClick={() => {
-					setEntries([...entries, newAdd]);
+					setEntries([...entries, newAdd(uuidv4())]);
 				}}
 			>
 				+
