@@ -50,12 +50,46 @@ function App() {
 
 			<div className="Time-entry Time-entry-add" key={"add"}>
 				<div>
-					<div>start</div>
-					<div>end</div>
+					<input
+						className="input input-time"
+						type="time"
+						id="time-start"
+						name="time-start"
+					/>
+					<input
+						className="input input-time"
+						type="time"
+						id="time-start"
+						name="time-start"
+					/>
 				</div>
-				<div>unit</div>
-				<div>caseId</div>
-				<div>type</div>
+				<div>
+					<input
+						className="input input-unit"
+						type="number"
+						id="unit"
+						name="unit"
+					/>
+					&nbsp;unit
+				</div>
+				<div>
+					<input
+						className="input input-case-id"
+						type="text"
+						id="case-id"
+						name="case-id"
+						placeholder="case id"
+					/>
+				</div>
+				<div>
+					<input
+						className="input input-type"
+						type="text"
+						id="type"
+						name="type"
+						placeholder="Type"
+					/>
+				</div>
 				<button
 					onClick={() => {
 						setEntries([...entries, newAdd(uuidv4())]);
