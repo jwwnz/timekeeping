@@ -41,6 +41,11 @@
 	grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
 }
 
+.Time-entry-add {
+	border: lightgray dashed;
+	color: gray;
+}
+
 @keyframes App-logo-spin {
 	from {
 		transform: rotate(0deg);

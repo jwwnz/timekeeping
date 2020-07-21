@@ -8,7 +8,7 @@ import { something, newAdd } from "./testData.js";
 
 const Navbar = () => (
 	<header className="App-header">
-		<div className="">Time-keeping</div>
+		<div>Time-keeping</div>
 	</header>
 );
 
@@ -38,7 +38,7 @@ function App() {
 								{dayjs().minute() + Math.round((entry.unit % 1) * 60)}
 							</div>
 						</div>
-						<div>{entry.unit}u</div>
+						<div>{entry.unit} unit</div>
 						<div>{entry.caseId}</div>
 						<div>{entry.type}</div>
 						<button onClick={() => deleteEntry(entry.id)}>
@@ -47,13 +47,23 @@ function App() {
 					</div>
 				);
 			})}
-			<button
-				onClick={() => {
-					setEntries([...entries, newAdd(uuidv4())]);
-				}}
-			>
-				+
-			</button>
+
+			<div className="Time-entry Time-entry-add" key={"add"}>
+				<div>
+					<div>start</div>
+					<div>end</div>
+				</div>
+				<div>unit</div>
+				<div>caseId</div>
+				<div>type</div>
+				<button
+					onClick={() => {
+						setEntries([...entries, newAdd(uuidv4())]);
+					}}
+				>
+					<i className="fa fa-plus"></i>
+				</button>
+			</div>
 		</div>
 	);
 }
