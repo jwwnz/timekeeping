@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
-import dayjs from "dayjs";
 import "font-awesome/css/font-awesome.min.css";
 import { v4 as uuidv4 } from "uuid";
-
-import { something, newAdd } from "./testData.js";
+import { something } from "./testData.js";
 
 const Navbar = () => (
 	<header className="App-header">
@@ -14,6 +12,64 @@ const Navbar = () => (
 
 function App() {
 	const [entries, setEntries] = useState(something);
+	const [newEntry, setNewEntry] = useState({
+		id: null,
+		caseId: null,
+		startTime: null,
+		unit: 0,
+		type: null,
+	});
+
+	const addEntry = () => {
+		setNewEntry({ ...newEntry, id: uuidv4() });
+
+		setEntries([...entries, newEntry]);
+	};
+
+	const updateNewStartTime = (e) => {
+		setNewEntry({
+			caseId: newEntry.caseId,
+			startTime: e.target.value,
+			unit: newEntry.unit,
+			type: newEntry.type,
+		});
+	};
+
+	// const updateNewEndTime = (e) => {
+	// 	setNewEntry({
+	// 		caseId: newEntry.caseId,
+	// 		startTime: newEntry.startTime,
+	// 		unit: newEntry.unit,
+	// 		type: newEntry.type,
+	// 	});
+	// };
+
+	const updateNewUnit = (e) => {
+		setNewEntry({
+			caseId: newEntry.caseId,
+			startTime: newEntry.startTime,
+			unit: e.target.value,
+			type: newEntry.type,
+		});
+	};
+
+	const updateNewCaseId = (e) => {
+		setNewEntry({
+			caseId: e.target.value,
+			startTime: newEntry.startTime,
+			unit: newEntry.unit,
+			type: newEntry.type,
+		});
+	};
+
+	const updateNewType = (e) => {
+		setNewEntry({
+			caseId: newEntry.caseId,
+			startTime: newEntry.startTime,
+			unit: newEntry.unit,
+			type: e.target.value,
+		});
+	};
 
 	const deleteEntry = (uuid) => {
 		const arrayWithoutDeletedEntry = entries.filter((entry) => {
@@ -30,15 +86,17 @@ function App() {
 					<div className="Time-entry" key={entry.id}>
 						<div>
 							<div>
-								{dayjs(entry.startTime).hour()}:
-								{dayjs(entry.startTime).minute()}
+								{entry.startTime}
+								{/* {dayjs(entry.startTime).hour()}:
+								{dayjs(entry.startTime).minute()} */}
 							</div>
 							<div>
-								{Math.round(dayjs(entry.startTime).hour() + entry.unit)}:
-								{dayjs().minute() + Math.round((entry.unit % 1) * 60)}
+								{entry.startTime}
+								{/* {Math.round(dayjs(entry.startTime).hour() + entry.unit)}:
+								{dayjs().minute() + Math.round((entry.unit % 1) * 60)} */}
 							</div>
 						</div>
-						<div>{entry.unit} unit</div>
+						<div>{entry.unit} u</div>
 						<div>{entry.caseId}</div>
 						<div>{entry.type}</div>
 						<button onClick={() => deleteEntry(entry.id)}>
@@ -55,12 +113,14 @@ function App() {
 						type="time"
 						id="time-start"
 						name="time-start"
+						onChange={updateNewStartTime}
 					/>
 					<input
 						className="input input-time"
 						type="time"
-						id="time-start"
-						name="time-start"
+						id="time-end"
+						name="time-end"
+						// onChange={}
 					/>
 				</div>
 				<div>
@@ -69,6 +129,7 @@ function App() {
 						type="number"
 						id="unit"
 						name="unit"
+						onChange={updateNewUnit}
 					/>
 					&nbsp;unit
 				</div>
@@ -79,6 +140,7 @@ function App() {
 						id="case-id"
 						name="case-id"
 						placeholder="case id"
+						onChange={updateNewCaseId}
 					/>
 				</div>
 				<div>
@@ -88,13 +150,10 @@ function App() {
 						id="type"
 						name="type"
 						placeholder="Type"
+						onChange={updateNewType}
 					/>
 				</div>
-				<button
-					onClick={() => {
-						setEntries([...entries, newAdd(uuidv4())]);
-					}}
-				>
+				<button onClick={addEntry}>
 					<i className="fa fa-plus"></i>
 				</button>
 			</div>
