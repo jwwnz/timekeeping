@@ -93,13 +93,9 @@ function App() {
 						<div>
 							<div>
 								{entry.startTime}
-								{/* {dayjs(entry.startTime).hour()}:
-								{dayjs(entry.startTime).minute()} */}
 							</div>
 							<div>
 								{entry.endTime}
-								{/* {Math.round(dayjs(entry.startTime).hour() + entry.unit)}:
-								{dayjs().minute() + Math.round((entry.unit % 1) * 60)} */}
 							</div>
 						</div>
 						<div>{entry.unit} u</div>
