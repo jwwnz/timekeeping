@@ -16,6 +16,7 @@ function App() {
 		id: null,
 		caseId: null,
 		startTime: null,
+		endTime: null,
 		unit: 0,
 		type: null,
 	});
@@ -30,24 +31,27 @@ function App() {
 		setNewEntry({
 			caseId: newEntry.caseId,
 			startTime: e.target.value,
+			endTime: newEntry.endTime,
 			unit: newEntry.unit,
 			type: newEntry.type,
 		});
 	};
 
-	// const updateNewEndTime = (e) => {
-	// 	setNewEntry({
-	// 		caseId: newEntry.caseId,
-	// 		startTime: newEntry.startTime,
-	// 		unit: newEntry.unit,
-	// 		type: newEntry.type,
-	// 	});
-	// };
+	const updateNewEndTime = (e) => {
+		setNewEntry({
+			caseId: newEntry.caseId,
+			startTime: newEntry.startTime,
+			endTime: e.target.value,
+			unit: newEntry.unit,
+			type: newEntry.type,
+		});
+	};
 
 	const updateNewUnit = (e) => {
 		setNewEntry({
 			caseId: newEntry.caseId,
 			startTime: newEntry.startTime,
+			endTime: newEntry.endTime,
 			unit: e.target.value,
 			type: newEntry.type,
 		});
@@ -57,6 +61,7 @@ function App() {
 		setNewEntry({
 			caseId: e.target.value,
 			startTime: newEntry.startTime,
+			endTime: newEntry.endTime,
 			unit: newEntry.unit,
 			type: newEntry.type,
 		});
@@ -66,6 +71,7 @@ function App() {
 		setNewEntry({
 			caseId: newEntry.caseId,
 			startTime: newEntry.startTime,
+			endTime: newEntry.endTime,
 			unit: newEntry.unit,
 			type: e.target.value,
 		});
@@ -91,7 +97,7 @@ function App() {
 								{dayjs(entry.startTime).minute()} */}
 							</div>
 							<div>
-								{entry.startTime}
+								{entry.endTime}
 								{/* {Math.round(dayjs(entry.startTime).hour() + entry.unit)}:
 								{dayjs().minute() + Math.round((entry.unit % 1) * 60)} */}
 							</div>
@@ -120,7 +126,7 @@ function App() {
 						type="time"
 						id="time-end"
 						name="time-end"
-						// onChange={}
+						onChange={updateNewEndTime}
 					/>
 				</div>
 				<div>
