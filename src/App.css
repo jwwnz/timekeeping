@@ -38,7 +38,7 @@
 	font-size: 17px;
 	display: grid;
 	grid-column-start: 1;
-	grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+	grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
 }
 
 .Time-entry-add {
@@ -63,7 +63,11 @@
 }
 
 .input-time {
-	width: 50px;
+	width: 80px;
+}
+
+.input-hour {
+	width: 40px;
 }
 
 @keyframes App-logo-spin {
