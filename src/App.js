@@ -95,8 +95,23 @@ function App() {
 		return (<div id="myModal" class="modal">
 			<div class="modal-content">
 				<span class="close" onClick={toggleEditModal}>&times;</span>
+				<div className="Time-entry" key={newEntry.id}>
+					<div>
+						<div>
+							{newEntry.startTime}
+						</div>
+						<div>
+							{newEntry.endTime}
+						</div>
+					</div>
+					<div>{newEntry.unit} u</div>
+					<div>{newEntry.caseId}</div>
+					<div>{newEntry.type}</div>
+					<button disabled>
+						<i className="fa fa-trash"></i>
+					</button>
+				</div>
 				<h2>Add a new entry</h2>
-
 				<div className="Time-entry Time-entry-add" key={"add"}>
 					<div>
 						<input
