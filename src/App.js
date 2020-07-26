@@ -49,6 +49,7 @@ function App() {
 				endTime: newEntry.endTime,
 				unit: newEntry.unit,
 				type: newEntry.type,
+				description: newEntry.description,
 			});
 		};
 
@@ -59,6 +60,7 @@ function App() {
 				endTime: e.target.value,
 				unit: newEntry.unit,
 				type: newEntry.type,
+				description: newEntry.description,
 			});
 		};
 
@@ -69,6 +71,7 @@ function App() {
 				endTime: newEntry.endTime,
 				unit: e.target.value,
 				type: newEntry.type,
+				description: newEntry.description,
 			});
 		};
 
@@ -79,6 +82,7 @@ function App() {
 				endTime: newEntry.endTime,
 				unit: newEntry.unit,
 				type: newEntry.type,
+				description: newEntry.description,
 			});
 		};
 
@@ -89,13 +93,25 @@ function App() {
 				endTime: newEntry.endTime,
 				unit: newEntry.unit,
 				type: e.target.value,
+				description: newEntry.description,
+			});
+		};
+
+		const updateNewDescription = (e) => {
+			setNewEntry({
+				caseId: newEntry.caseId,
+				startTime: newEntry.startTime,
+				endTime: newEntry.endTime,
+				unit: newEntry.unit,
+				type: newEntry.type,
+				description: e.target.value,
 			});
 		};
 
 
-		return (<div id="myModal" class="modal">
-			<div class="modal-content">
-				<span class="close" onClick={toggleEditModal}>&times;</span>
+		return (<div id="myModal" className="modal">
+			<div className="modal-content">
+				<span className="close" onClick={toggleEditModal}>&times;</span>
 				<div className="Time-entry" key={newEntry.id}>
 					<div>
 						<div>
@@ -140,7 +156,7 @@ function App() {
 						<span>&nbsp;unit</span>
 					</div>
 					<div>
-						<label for="case-id">Case id:</label>
+						<label htmlFor="case-id">Case id:</label>
 						<input
 							className="input input-case-id"
 							type="text"
@@ -151,7 +167,7 @@ function App() {
 						/>
 					</div>
 					<div>
-						<label for="action-type">Category type:</label>
+						<label htmlFor="action-type">Category type:</label>
 						<input
 							className="input input-type"
 							type="text"
@@ -162,8 +178,8 @@ function App() {
 						/>
 					</div>
 					<div>
-						<label for="case-description">Description:</label>
-						<textarea name="case-description" cols="40" rows="5"></textarea>
+						<label htmlFor="case-description">Description:</label>
+						<textarea name="case-description" cols="40" rows="5" onChange={updateNewDescription}></textarea>
 					</div>
 					<button onClick={addEntry}>
 						<i className="fa fa-plus"></i>
