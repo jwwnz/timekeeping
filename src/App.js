@@ -12,7 +12,7 @@ const Navbar = () => (
 
 function App() {
 	const [entries, setEntries] = useState(something);
-	const [modalOpen, setModalOpen] = useState(true);
+	const [modalOpen, setModalOpen] = useState(false);
 
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
