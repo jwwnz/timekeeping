@@ -33,6 +33,7 @@ function App() {
 			endTime: null,
 			unit: 0,
 			type: null,
+			description: null,
 		});
 
 		const addEntry = () => {
