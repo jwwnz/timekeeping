@@ -51,7 +51,7 @@
 }
 
 .input-unit {
-	width: 20px;
+	width: 80%;
 }
 
 .input-case-id {
@@ -63,11 +63,17 @@
 }
 
 .input-time {
-	width: 80px;
+	width: 80%;
 }
 
-.input-hour {
+/* .input-hour {
 	width: 40px;
+} */
+
+.input-time-group {
+	display: grid;
+	grid-column-start: 1;
+	grid-template-columns: 4fr 4fr 1fr 1fr;
 }
 
 @keyframes App-logo-spin {

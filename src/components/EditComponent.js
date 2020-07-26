@@ -81,7 +81,7 @@ function EditComponent() {
     return (
 
         <div className="Time-entry Time-entry-add" key={"add"}>
-            <div>
+            <div className="input input-time-group">
                 <input
                     className="input input-time"
                     type="time"

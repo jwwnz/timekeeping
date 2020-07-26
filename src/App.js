@@ -12,7 +12,7 @@ const Navbar = () => (
 
 function App() {
 	const [entries, setEntries] = useState(something);
-	const [modalOpen, setModalOpen] = useState(false);
+	const [modalOpen, setModalOpen] = useState(true);
 
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
@@ -112,8 +112,8 @@ function App() {
 					</button>
 				</div>
 				<h2>Add a new entry</h2>
-				<div className="Time-entry Time-entry-add" key={"add"}>
-					<div>
+				<div>
+					<div className="input input-time-group">
 						<input
 							className="input input-time"
 							type="time"
@@ -128,18 +128,18 @@ function App() {
 							name="time-end"
 							onChange={updateNewEndTime}
 						/>
-					</div>
-					<div>
 						<input
 							className="input input-unit"
 							type="number"
 							id="unit"
 							name="unit"
+							value={newEntry.unit}
 							onChange={updateNewUnit}
 						/>
-					&nbsp;unit
-				</div>
+						<span>&nbsp;unit</span>
+					</div>
 					<div>
+						<label for="case-id">Case id:</label>
 						<input
 							className="input input-case-id"
 							type="text"
@@ -150,14 +150,19 @@ function App() {
 						/>
 					</div>
 					<div>
+						<label for="action-type">Category type:</label>
 						<input
 							className="input input-type"
 							type="text"
 							id="type"
-							name="type"
+							name="action-type"
 							placeholder="Type"
 							onChange={updateNewType}
 						/>
+					</div>
+					<div>
+						<label for="case-description">Description:</label>
+						<textarea name="case-description" cols="40" rows="5"></textarea>
 					</div>
 					<button onClick={addEntry}>
 						<i className="fa fa-plus"></i>
