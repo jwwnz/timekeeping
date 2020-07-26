@@ -7,5 +7,9 @@ An app that lawyers can take around with them to add time entries of work done.
 
 This experimental web app will prelude a native app.
 
-## lightweight
-I intend to minimise the use of third party dependencies.
+## Development philosophy
+- Simple and minimal.
+- Reduce third party dependency libraries (for web version).
+
+## Designs
+Figma designs located [here](https://www.figma.com/file/YRgGFl3mt0g1BncdXAWEfF/Legal.timekeeping?node-id=0%3A1). 
