@@ -155,31 +155,34 @@ function App() {
 						/>
 						<span>&nbsp;unit</span>
 					</div>
-					<div>
-						<label htmlFor="case-id">Case id:</label>
-						<input
-							className="input input-case-id"
-							type="text"
-							id="case-id"
-							name="case-id"
-							placeholder="case id"
-							onChange={updateNewCaseId}
-						/>
-					</div>
-					<div>
-						<label htmlFor="action-type">Category type:</label>
-						<input
-							className="input input-type"
-							type="text"
-							id="type"
-							name="action-type"
-							placeholder="Type"
-							onChange={updateNewType}
-						/>
-					</div>
-					<div>
-						<label htmlFor="case-description">Description:</label>
-						<textarea name="case-description" cols="40" rows="5" onChange={updateNewDescription}></textarea>
+
+					<div >
+						<div className="input input-panel">
+							<label htmlFor="case-id">Case id:</label>
+							<input
+								className="input input-case-id"
+								type="text"
+								id="case-id"
+								name="case-id"
+								placeholder="case id"
+								onChange={updateNewCaseId}
+							/>
+						</div>
+						<div className="input input-panel">
+							<label htmlFor="action-type">Category type:</label>
+							<input
+								className="input input-type"
+								type="text"
+								id="type"
+								name="action-type"
+								placeholder="Type"
+								onChange={updateNewType}
+							/>
+						</div>
+						<div>
+							<label htmlFor="case-description">Description:</label>
+							<textarea name="case-description" cols="40" rows="5" onChange={updateNewDescription}></textarea>
+						</div>
 					</div>
 					<button onClick={addEntry}>
 						<i className="fa fa-plus"></i>
