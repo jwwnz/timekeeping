@@ -1,4 +1,4 @@
-# Timekeeping
+## Timekeeping
 
 An experimental timesheeting app for lawyers.
 
@@ -16,3 +16,7 @@ Figma designs located [here](https://www.figma.com/file/YRgGFl3mt0g1BncdXAWEfF/L
 
 ## Deployable
 The deployed website is accessible [here](https://timekeeping-law.netlify.app/).
+
+## Team members
+- James Won 
+- Hyun min Jun
