@@ -13,3 +13,6 @@ This experimental web app will prelude a native app.
 
 ## Designs
 Figma designs located [here](https://www.figma.com/file/YRgGFl3mt0g1BncdXAWEfF/Legal.timekeeping?node-id=0%3A1). 
+
+## Deployable
+The deployed website is accessible [here](https://timekeeping-law.netlify.app/).

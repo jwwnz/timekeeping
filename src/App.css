@@ -15,7 +15,7 @@
 }
 
 .App-header {
-	background-color: #282c34;
+	background-color: #00B0E8;
 	min-height: 10vh;
 	display: flex;
 	flex-direction: column;
@@ -31,7 +31,7 @@
 
 .Time-entry {
 	text-align: center;
-	border: #282c34 solid;
+	border: #E7E7E7 solid;
 	height: 40px;
 	padding: 10px;
 	margin: 10px 5px 10px 5px;
