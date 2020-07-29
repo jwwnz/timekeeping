@@ -176,6 +176,12 @@
 	width: 80%;
   }
 
+  .button-timer-stop {
+	background-color: #E80000;
+	color: white;
+	width: 80%;
+  }
+
   .button-save {
 	margin-top: 50px;
 	color: white;

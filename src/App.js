@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "font-awesome/css/font-awesome.min.css";
 import { v4 as uuidv4 } from "uuid";
@@ -13,6 +13,20 @@ const Navbar = () => (
 function App() {
 	const [entries, setEntries] = useState(something);
 	const [modalOpen, setModalOpen] = useState(true);
+	const [timeElapsed, setTimeElapsed] = useState(0);
+	const [timerIsOn, setTimerIsOn] = useState(false);
+
+	useEffect(() => {
+		if (!timerIsOn) return;
+
+		const timer = timerIsOn && setInterval(() => {
+			setTimeElapsed(timeElapsed + 1);
+			console.log(timeElapsed);
+		}, 1000)
+
+		return () => clearInterval(timer);
+
+	}, [timerIsOn, timeElapsed])
 
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
@@ -113,7 +127,10 @@ function App() {
 			<div className="modal-content">
 				<span className="close" onClick={toggleEditModal}>&times;</span>
 				<div className="input-content">
-					<button className="button-timer-start">Start</button>
+					{timerIsOn ?
+						<button onClick={() => setTimerIsOn(false)} className="button-timer-stop">{`Stop ${timeElapsed}`}</button> :
+						<button onClick={() => setTimerIsOn(true)} className="button-timer-start">{timeElapsed > 0 ? `Continue ${timeElapsed}` : "Start"}</button>
+					}
 
 					<div className="input-pair">
 						<label htmlFor="time-start">Start time:</label>
