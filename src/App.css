@@ -39,6 +39,7 @@
 	display: grid;
 	grid-column-start: 1;
 	grid-template-columns: 2fr 1fr 2fr 2fr 1fr;
+	box-shadow: 2px 4px 5px #E7E7E7;
 }
 
 .Time-entry-add {
@@ -132,6 +133,8 @@
 	border: 1px solid #888;
 	width: 80%; /* Could be more or less, depending on screen size */
 	height: 80%;
+	border: none;
+	box-shadow: 2px 4px 5px #C4C4C4;
   }
   
   /* The Close Button */
