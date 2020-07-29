@@ -167,8 +167,8 @@ function App() {
 							<textarea name="case-description" cols="40" rows="5" onChange={updateNewDescription}></textarea>
 						</div>
 					</div>
-					<button onClick={addEntry}>
-						<i className="fa fa-plus"></i>
+					<button onClick={addEntry} className="button">
+						Save
 					</button>
 				</div>
 			</div>
@@ -178,6 +178,8 @@ function App() {
 	return (
 		<div className="App">
 			<Navbar />
+			{/* change to dynamic date */}
+			<h3>Monday, 27th July 2020</h3>
 			{entries.map((entry) => {
 				return (
 					<div className="Time-entry" key={entry.id}>
@@ -192,13 +194,13 @@ function App() {
 						<div>{entry.unit} u</div>
 						<div>{entry.caseId}</div>
 						<div>{entry.type}</div>
-						<button onClick={() => deleteEntry(entry.id)}>
+						<button onClick={() => deleteEntry(entry.id)} className="button-icon">
 							<i className="fa fa-trash"></i>
 						</button>
 					</div>
 				);
 			})}
-			<button onClick={toggleEditModal}>+</button>
+			<button onClick={toggleEditModal} className="button">+</button>
 
 			{/* This is modal content created by the button */}
 			{
