@@ -46,12 +46,34 @@
 	color: gray;
 }
 
+.input-content{
+	margin-top: 50px;
+}
+
 .input {
-	height: 80%;
+	font-size: 15px;
+	font-family: 'Playfair Display', serif;
+}
+
+.input-pair {
+	display: grid;
+	grid-column-start: 1;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 10px;
+}
+
+.input-time-group {
+
+}
+
+.input-case-group {
+	padding: 10px;
+	margin-top: 10px;
+	background-color: lightgray;
 }
 
 .input-unit {
-	width: 80%;
+	width: 60px;
 }
 
 .input-case-id {
@@ -62,25 +84,19 @@
 	width: 60px;
 }
 
-.input-time {
-	width: 80%;
-}
-
-/* .input-hour {
-	width: 40px;
-} */
-
-.input-time-group {
+.input-description-pair {
 	display: grid;
 	grid-column-start: 1;
-	grid-template-columns: 4fr 4fr 1fr 1fr;
+	grid-template-columns: 1fr;
+	margin-top: 10px;
+
 }
 
-.input-panel {
-	display: grid;
-	grid-column-start: 1;
-	grid-template-columns: 1fr 1fr;
+.input-description-pair > textarea {
+	width: 100%;
 }
+
+
 
 @keyframes App-logo-spin {
 	from {
@@ -125,10 +141,10 @@
 	font-weight: bold;
   }
 
-  .button {
+  button {
 	background-color: #61dafb;
 	border: none;
-	height: 40px;
+	min-height: 40px;
 	min-width: 40px;
 	font-size: 20px;
 	font-family: 'Playfair Display', serif;

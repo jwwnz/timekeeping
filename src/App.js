@@ -12,7 +12,7 @@ const Navbar = () => (
 
 function App() {
 	const [entries, setEntries] = useState(something);
-	const [modalOpen, setModalOpen] = useState(false);
+	const [modalOpen, setModalOpen] = useState(true);
 
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
@@ -112,22 +112,31 @@ function App() {
 		return (<div id="myModal" className="modal">
 			<div className="modal-content">
 				<span className="close" onClick={toggleEditModal}>&times;</span>
-				<div>
-					<div className="input input-time-group">
+				<div className="input-content">
+					<button>Start</button>
+
+					<div className="input-pair">
+						<label htmlFor="time-start">Start time:</label>
 						<input
-							className="input input-time"
+							className="input"
 							type="time"
 							id="time-start"
 							name="time-start"
 							onChange={updateNewStartTime}
 						/>
+					</div>
+					<div className="input-pair">
+						<label htmlFor="time-end">End time:</label>
 						<input
-							className="input input-time"
+							className="input input-group"
 							type="time"
 							id="time-end"
 							name="time-end"
 							onChange={updateNewEndTime}
 						/>
+					</div>
+					<div className="input-pair">
+						<label htmlFor="unit">Unit:</label>
 						<input
 							className="input input-unit"
 							type="number"
@@ -136,12 +145,11 @@ function App() {
 							value={newEntry.unit}
 							onChange={updateNewUnit}
 						/>
-						<span>&nbsp;unit</span>
 					</div>
 
-					<div >
-						<div className="input input-panel">
-							<label htmlFor="case-id">Case id:</label>
+					<div className="input-case-group">
+						<div className="input-pair">
+							<label htmlFor="case-id">Case:</label>
 							<input
 								className="input input-case-id"
 								type="text"
@@ -151,7 +159,7 @@ function App() {
 								onChange={updateNewCaseId}
 							/>
 						</div>
-						<div className="input input-panel">
+						<div className="input-pair">
 							<label htmlFor="action-type">Category type:</label>
 							<input
 								className="input input-type"
@@ -162,9 +170,15 @@ function App() {
 								onChange={updateNewType}
 							/>
 						</div>
-						<div>
+						<div className="input-description-pair">
 							<label htmlFor="case-description">Description:</label>
-							<textarea name="case-description" cols="40" rows="5" onChange={updateNewDescription}></textarea>
+							<textarea
+								className="input"
+								name="case-description"
+								cols="40"
+								rows="5"
+								onChange={updateNewDescription}
+							/>
 						</div>
 					</div>
 					<button onClick={addEntry} className="button">
@@ -172,7 +186,7 @@ function App() {
 					</button>
 				</div>
 			</div>
-		</div>);
+		</div >);
 	}
 
 	return (
