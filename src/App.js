@@ -6,7 +6,7 @@ import { something } from "./testData.js";
 
 const Navbar = () => (
 	<header className="App-header">
-		<div>Time-sheet</div>
+		<div>Loci</div>
 	</header>
 );
 
