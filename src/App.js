@@ -118,7 +118,7 @@ function App() {
 					<div className="input-pair">
 						<label htmlFor="time-start">Start time:</label>
 						<input
-							className="input"
+							className="input input-short"
 							type="time"
 							id="time-start"
 							name="time-start"
@@ -128,7 +128,7 @@ function App() {
 					<div className="input-pair">
 						<label htmlFor="time-end">End time:</label>
 						<input
-							className="input input-group"
+							className="input input-short"
 							type="time"
 							id="time-end"
 							name="time-end"
@@ -136,9 +136,20 @@ function App() {
 						/>
 					</div>
 					<div className="input-pair">
-						<label htmlFor="unit">Unit:</label>
+						<label htmlFor="unit">Units:</label>
 						<input
-							className="input input-unit"
+							className="input input-short"
+							type="number"
+							id="unit"
+							name="unit"
+							value={newEntry.unit}
+							onChange={updateNewUnit}
+						/>
+					</div>
+					<div className="input-pair">
+						<label htmlFor="unit">Total Earnings:</label>
+						<input
+							className="input input-short"
 							type="number"
 							id="unit"
 							name="unit"
@@ -147,11 +158,12 @@ function App() {
 						/>
 					</div>
 
+
 					<div className="input-case-group">
 						<div className="input-pair">
 							<label htmlFor="case-id">Case:</label>
 							<input
-								className="input input-case-id"
+								className="input input-short"
 								type="text"
 								id="case-id"
 								name="case-id"
@@ -160,9 +172,9 @@ function App() {
 							/>
 						</div>
 						<div className="input-pair">
-							<label htmlFor="action-type">Category type:</label>
+							<label htmlFor="action-type">Category:</label>
 							<input
-								className="input input-type"
+								className="input input-short"
 								type="text"
 								id="type"
 								name="action-type"

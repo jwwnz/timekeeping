@@ -72,17 +72,21 @@
 	background-color: lightgray;
 }
 
-.input-unit {
-	width: 60px;
+.input-short {
+	width: 100px;
+}
+
+/* .input-unit {
+	width: 100px;
 }
 
 .input-case-id {
-	width: 60px;
+	width: 100px;
 }
 
 .input-type {
-	width: 60px;
-}
+	width: 100px;
+} */
 
 .input-description-pair {
 	display: grid;
