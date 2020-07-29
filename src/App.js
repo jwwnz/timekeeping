@@ -163,7 +163,7 @@ function App() {
 						<div className="input-pair">
 							<label htmlFor="case-id">Case:</label>
 							<input
-								className="input input-short"
+								className="input input-short input-case-group-color"
 								type="text"
 								id="case-id"
 								name="case-id"
@@ -174,7 +174,7 @@ function App() {
 						<div className="input-pair">
 							<label htmlFor="action-type">Category:</label>
 							<input
-								className="input input-short"
+								className="input input-short input-case-group-color"
 								type="text"
 								id="type"
 								name="action-type"
