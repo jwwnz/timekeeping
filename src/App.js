@@ -113,7 +113,7 @@ function App() {
 			<div className="modal-content">
 				<span className="close" onClick={toggleEditModal}>&times;</span>
 				<div className="input-content">
-					<button>Start</button>
+					<button className="button-timer-start">Start</button>
 
 					<div className="input-pair">
 						<label htmlFor="time-start">Start time:</label>
@@ -193,7 +193,7 @@ function App() {
 							/>
 						</div>
 					</div>
-					<button onClick={addEntry} className="button">
+					<button onClick={addEntry} className="button-save">
 						Save
 					</button>
 				</div>
@@ -226,7 +226,7 @@ function App() {
 					</div>
 				);
 			})}
-			<button onClick={toggleEditModal} className="button">+</button>
+			<button onClick={toggleEditModal} className="button-circle">+</button>
 
 			{/* This is modal content created by the button */}
 			{
