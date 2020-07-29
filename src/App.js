@@ -12,7 +12,7 @@ const Navbar = () => (
 
 function App() {
 	const [entries, setEntries] = useState(something);
-	const [modalOpen, setModalOpen] = useState(true);
+	const [modalOpen, setModalOpen] = useState(false);
 	const [timeElapsed, setTimeElapsed] = useState(0);
 	const [timerIsOn, setTimerIsOn] = useState(false);
 
