@@ -188,6 +188,8 @@ button {
 
 .button-circle {
 	border-radius: 50%;
+	height: 50px;
+	width: 50px;
 	font-weight: bolder;
 	color: white;
 }
