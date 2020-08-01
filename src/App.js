@@ -3,7 +3,12 @@ import "./App.css";
 import "font-awesome/css/font-awesome.min.css";
 import { v4 as uuidv4 } from "uuid";
 import { something } from "./testData.js";
-import { getCurrentDateTime, addTimeAndReturnEndTime } from "./helpers/time.js";
+import {
+	getCurrentDateTime,
+	addTimeAndReturnEndTime,
+	setDateAndTimeWithDatetimeString,
+	formatDateToDatetime,
+} from "./helpers/time.js";
 
 const Navbar = () => (
 	<header className="App-header">
@@ -59,9 +64,10 @@ function App() {
 		};
 
 		const updateNewStartTime = (e) => {
+			console.log("hello" + e.target.value);
 			setNewEntry({
 				caseId: newEntry.caseId,
-				startTime: e.target.value,
+				startTime: setDateAndTimeWithDatetimeString(e.target.value),
 				endTime: newEntry.endTime,
 				unit: newEntry.unit,
 				type: newEntry.type,
@@ -254,7 +260,7 @@ function App() {
 				return (
 					<div className="Time-entry" key={entry.id}>
 						<div>
-							<div>{entry.startTime}</div>
+							<div>{formatDateToDatetime(entry.startTime)}</div>
 							<div>{entry.endTime}</div>
 						</div>
 						<div>{entry.unit} u</div>

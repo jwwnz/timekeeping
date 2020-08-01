@@ -3,10 +3,22 @@ import dayjs from "dayjs";
 // Get current time
 const getCurrentDateTime = () => {
 	const newDateTime = dayjs();
-	console.log(1);
 	console.log(newDateTime);
 	return newDateTime;
 };
+
+// Set Date and time using datetime string (HH:mm)
+const setDateAndTimeWithDatetimeString = (datetimeString) => {
+	const datetimeArray = datetimeString.split(":");
+	let returnDateAndTime = dayjs();
+	returnDateAndTime.hour(datetimeArray[0]);
+	returnDateAndTime.minute(datetimeArray[1]);
+	console.log(returnDateAndTime);
+
+	return dayjs(returnDateAndTime);
+};
+
+const formatDateToDatetime = (date) => date.format("HH:mm");
 
 // Add time to existing time
 // Calculates to minutes only
@@ -29,4 +41,9 @@ const addTimeAndReturnEndTime = (existingTime, periodToAdd) => {
 
 // Get time for a particular day only.
 
-export { getCurrentDateTime, addTimeAndReturnEndTime };
+export {
+	getCurrentDateTime,
+	addTimeAndReturnEndTime,
+	setDateAndTimeWithDatetimeString,
+	formatDateToDatetime,
+};
