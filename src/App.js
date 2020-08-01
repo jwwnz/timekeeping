@@ -3,6 +3,7 @@ import "./App.css";
 import "font-awesome/css/font-awesome.min.css";
 import { v4 as uuidv4 } from "uuid";
 import { something } from "./testData.js";
+import { getCurrentDateTime, addTimeAndReturnEndTime } from "./helpers/time.js";
 
 const Navbar = () => (
 	<header className="App-header">
@@ -19,18 +20,19 @@ function App() {
 	useEffect(() => {
 		if (!timerIsOn) return;
 
-		const timer = timerIsOn && setInterval(() => {
-			setTimeElapsed(timeElapsed + 1);
-			console.log(timeElapsed);
-		}, 1000)
+		const timer =
+			timerIsOn &&
+			setInterval(() => {
+				setTimeElapsed(timeElapsed + 1);
+				console.log(timeElapsed);
+			}, 1000);
 
 		return () => clearInterval(timer);
-
-	}, [timerIsOn, timeElapsed])
+	}, [timerIsOn, timeElapsed]);
 
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
-	}
+	};
 
 	const deleteEntry = (uuid) => {
 		const arrayWithoutDeletedEntry = entries.filter((entry) => {
@@ -122,136 +124,157 @@ function App() {
 			});
 		};
 
+		return (
+			<div id="myModal" className="modal">
+				<div className="modal-content">
+					<span className="close" onClick={toggleEditModal}>
+						&times;
+					</span>
+					<div className="input-content">
+						{timerIsOn ? (
+							<button
+								onClick={() => setTimerIsOn(false)}
+								className="button-timer-stop"
+							>{`Stop ${timeElapsed}`}</button>
+						) : (
+							<button
+								onClick={() => setTimerIsOn(true)}
+								className="button-timer-start"
+							>
+								{timeElapsed > 0 ? `Continue ${timeElapsed}` : "Start"}
+							</button>
+						)}
 
-		return (<div id="myModal" className="modal">
-			<div className="modal-content">
-				<span className="close" onClick={toggleEditModal}>&times;</span>
-				<div className="input-content">
-					{timerIsOn ?
-						<button onClick={() => setTimerIsOn(false)} className="button-timer-stop">{`Stop ${timeElapsed}`}</button> :
-						<button onClick={() => setTimerIsOn(true)} className="button-timer-start">{timeElapsed > 0 ? `Continue ${timeElapsed}` : "Start"}</button>
-					}
-
-					<div className="input-pair">
-						<label htmlFor="time-start">Start time:</label>
-						<input
-							className="input input-short"
-							type="time"
-							id="time-start"
-							name="time-start"
-							onChange={updateNewStartTime}
-						/>
-					</div>
-					<div className="input-pair">
-						<label htmlFor="time-end">End time:</label>
-						<input
-							className="input input-short"
-							type="time"
-							id="time-end"
-							name="time-end"
-							onChange={updateNewEndTime}
-						/>
-					</div>
-					<div className="input-pair">
-						<label htmlFor="unit">Units:</label>
-						<input
-							className="input input-short"
-							type="number"
-							id="unit"
-							name="unit"
-							value={newEntry.unit}
-							onChange={updateNewUnit}
-						/>
-					</div>
-					<div className="input-pair">
-						<label htmlFor="unit">Total Earnings:</label>
-						<input
-							className="input input-short"
-							type="number"
-							id="unit"
-							name="unit"
-							value={newEntry.unit}
-							onChange={updateNewUnit}
-						/>
-					</div>
-
-
-					<div className="input-case-group">
 						<div className="input-pair">
-							<label htmlFor="case-id">Case:</label>
+							<label htmlFor="time-start">Start time:</label>
 							<input
-								className="input input-short input-case-group-color"
-								type="text"
-								id="case-id"
-								name="case-id"
-								placeholder="case id"
-								onChange={updateNewCaseId}
+								className="input input-short"
+								type="time"
+								id="time-start"
+								name="time-start"
+								onChange={updateNewStartTime}
 							/>
 						</div>
 						<div className="input-pair">
-							<label htmlFor="action-type">Category:</label>
+							<label htmlFor="time-end">End time:</label>
 							<input
-								className="input input-short input-case-group-color"
+								className="input input-short"
+								type="time"
+								id="time-end"
+								name="time-end"
+								onChange={updateNewEndTime}
+							/>
+						</div>
+						<div className="input-pair">
+							<label htmlFor="time-elapsed">Time elapsed:</label>
+							<input
+								className="input input-short"
 								type="text"
-								id="type"
-								name="action-type"
-								placeholder="Type"
-								onChange={updateNewType}
+								id="time-elapsed"
+								name="time-elapsed"
+								value={addTimeAndReturnEndTime(getCurrentDateTime(), {
+									hoursToAdd: 2,
+									minutesToAdd: 10,
+								}).format("HH:mm")}
+								disabled
 							/>
 						</div>
-						<div className="input-description-pair">
-							<label htmlFor="case-description">Description:</label>
-							<textarea
-								className="input"
-								name="case-description"
-								cols="40"
-								rows="5"
-								onChange={updateNewDescription}
+						<div className="input-pair">
+							<label htmlFor="unit">Units:</label>
+							<input
+								className="input input-short"
+								type="number"
+								id="unit"
+								name="unit"
+								value={newEntry.unit}
+								onChange={updateNewUnit}
 							/>
 						</div>
+						<div className="input-pair">
+							<label htmlFor="unit">Total Earnings:</label>
+							<input
+								className="input input-short"
+								type="number"
+								id="unit"
+								name="unit"
+								value={newEntry.unit}
+								onChange={updateNewUnit}
+							/>
+						</div>
+
+						<div className="input-case-group">
+							<div className="input-pair">
+								<label htmlFor="case-id">Case:</label>
+								<input
+									className="input input-short input-case-group-color"
+									type="text"
+									id="case-id"
+									name="case-id"
+									placeholder="case id"
+									onChange={updateNewCaseId}
+								/>
+							</div>
+							<div className="input-pair">
+								<label htmlFor="action-type">Category:</label>
+								<input
+									className="input input-short input-case-group-color"
+									type="text"
+									id="type"
+									name="action-type"
+									placeholder="Type"
+									onChange={updateNewType}
+								/>
+							</div>
+							<div className="input-description-pair">
+								<label htmlFor="case-description">Description:</label>
+								<textarea
+									className="input"
+									name="case-description"
+									cols="40"
+									rows="5"
+									onChange={updateNewDescription}
+								/>
+							</div>
+						</div>
+						<button onClick={addEntry} className="button-save">
+							Save
+						</button>
 					</div>
-					<button onClick={addEntry} className="button-save">
-						Save
-					</button>
 				</div>
 			</div>
-		</div >);
-	}
+		);
+	};
 
 	return (
 		<div className="App">
 			<Navbar />
 			{/* change to dynamic date */}
-			<h3>Monday, 27th July 2020</h3>
+			<h3>{getCurrentDateTime().format("dddd D MMMM YYYY")}</h3>
 			{entries.map((entry) => {
 				return (
 					<div className="Time-entry" key={entry.id}>
 						<div>
-							<div>
-								{entry.startTime}
-							</div>
-							<div>
-								{entry.endTime}
-							</div>
+							<div>{entry.startTime}</div>
+							<div>{entry.endTime}</div>
 						</div>
 						<div>{entry.unit} u</div>
 						<div>{entry.caseId}</div>
 						<div>{entry.type}</div>
-						<button onClick={() => deleteEntry(entry.id)} className="button-icon">
+						<button
+							onClick={() => deleteEntry(entry.id)}
+							className="button-icon"
+						>
 							<i className="fa fa-trash"></i>
 						</button>
 					</div>
 				);
 			})}
-			<button onClick={toggleEditModal} className="button-circle">+</button>
+			<button onClick={toggleEditModal} className="button-circle">
+				+
+			</button>
 
 			{/* This is modal content created by the button */}
-			{
-				modalOpen && (
-					<Modal />
-				)
-			}
-
+			{modalOpen && <Modal />}
 		</div>
 	);
 }
