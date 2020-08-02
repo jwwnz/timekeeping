@@ -7,7 +7,6 @@ import {
 	addUnitsToTime,
 	calculateUnits,
 	getCurrentDateTime,
-	addTimeAndReturnEndTime,
 	setDateAndTimeWithDatetimeString,
 	formatDateToDatetime,
 } from "./helpers/time.js";
@@ -53,7 +52,7 @@ function App() {
 		const [newEntry, setNewEntry] = useState({
 			id: uuidv4(),
 			caseId: null,
-			startTime: null,
+			startTime: getCurrentDateTime(),
 			endTime: null,
 			unit: 0,
 			type: null,
@@ -156,6 +155,11 @@ function App() {
 			return false;
 		};
 
+		const startTimer = () => {
+			console.log("Timer started");
+			setTimerIsOn(true);
+		};
+
 		return (
 			<div id="myModal" className="modal">
 				<div className="modal-content">
@@ -169,10 +173,7 @@ function App() {
 								className="button-timer-stop"
 							>{`Stop ${timeElapsed}`}</button>
 						) : (
-							<button
-								onClick={() => setTimerIsOn(true)}
-								className="button-timer-start"
-							>
+							<button onClick={startTimer} className="button-timer-start">
 								{timeElapsed > 0 ? `Continue ${timeElapsed}` : "Start"}
 							</button>
 						)}
@@ -185,6 +186,11 @@ function App() {
 								id="time-start"
 								name="time-start"
 								onChange={updateNewStartTime}
+								value={
+									newEntry.startTime !== undefined &&
+									newEntry.startTime !== null &&
+									formatDateToDatetime(newEntry.startTime)
+								}
 							/>
 						</div>
 						<div className="input-pair">
@@ -204,10 +210,7 @@ function App() {
 								type="text"
 								id="time-elapsed"
 								name="time-elapsed"
-								value={addTimeAndReturnEndTime(getCurrentDateTime(), {
-									hoursToAdd: 2,
-									minutesToAdd: 10,
-								}).format("HH:mm")}
+								value={newEntry.unit * 60 + " Minutes"}
 								disabled
 							/>
 						</div>

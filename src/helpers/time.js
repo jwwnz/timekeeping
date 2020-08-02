@@ -21,6 +21,10 @@ const formatDateToDatetime = (date) => date.format("HH:mm");
 
 // This only calculates hours and minutes
 const calculateUnits = (startTime, endTime) => {
+	console.log("endtime");
+	console.log(endTime);
+	if (!startTime || !endTime) return 0;
+
 	const minutes = endTime.diff(startTime, "minute");
 	const units = minutes / 60;
 
@@ -31,20 +35,6 @@ const addUnitsToTime = (startTime, units) => {
 	return startTime.add(units, "hour");
 };
 
-// Add time to existing time
-// Calculates to minutes only
-const addTimeAndReturnEndTime = (existingTime, periodToAdd) => {
-	const hours = existingTime.hour();
-	const minutes = existingTime.minute();
-	const { hoursToAdd, minutesToAdd } = periodToAdd;
-
-	// let endTime = dayjs().date(date);
-	let endTime = dayjs().hour(hours + hoursToAdd);
-	endTime.minute(minutes + minutesToAdd);
-
-	return endTime;
-};
-
 // Calculate period between two time.
 
 // Calculate units of specified period
@@ -52,7 +42,6 @@ const addTimeAndReturnEndTime = (existingTime, periodToAdd) => {
 // Get time for a particular day only.
 
 export {
-	addTimeAndReturnEndTime,
 	addUnitsToTime,
 	calculateUnits,
 	formatDateToDatetime,
