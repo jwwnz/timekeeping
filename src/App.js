@@ -4,6 +4,7 @@ import "font-awesome/css/font-awesome.min.css";
 import { v4 as uuidv4 } from "uuid";
 import { something } from "./testData.js";
 import {
+	calculateUnits,
 	getCurrentDateTime,
 	addTimeAndReturnEndTime,
 	setDateAndTimeWithDatetimeString,
@@ -75,11 +76,13 @@ function App() {
 		};
 
 		const updateNewEndTime = (e) => {
+			const newEndTime = setDateAndTimeWithDatetimeString(e.target.value);
+
 			setNewEntry({
 				caseId: newEntry.caseId,
 				startTime: newEntry.startTime,
-				endTime: setDateAndTimeWithDatetimeString(e.target.value),
-				unit: newEntry.unit,
+				endTime: newEndTime,
+				unit: calculateUnits(newEntry.startTime, newEndTime),
 				type: newEntry.type,
 				description: newEntry.description,
 			});
