@@ -288,7 +288,7 @@ function App() {
 			{entries.map((entry) => {
 				return (
 					<div className="Time-entry" key={entry.id}>
-						<div>
+						<div className="vertically-center">
 							<div>{formatDateToDatetime(entry.startTime)}</div>
 							<div>{entry.endTime && formatDateToDatetime(entry.endTime)}</div>
 						</div>

@@ -34,7 +34,7 @@
 .Time-entry {
 	text-align: center;
 	border: #e7e7e7 solid 2px;
-	height: 40px;
+	height: 60px;
 	padding: 10px;
 	margin: 10px 10px 10px 10px;
 	font-size: 17px;
@@ -204,6 +204,6 @@ button {
 }
 
 .vertically-center {
-	display: flex;
-	align-items: center;
+	margin-top: auto;
+	margin-bottom: auto;
 }
