@@ -6,7 +6,7 @@ const something = [
 		id: uuidv4(),
 		caseId: "ABC-123",
 		startTime: dayjs(),
-		endTime: "14:00",
+		endTime: dayjs(),
 		unit: 1.0,
 		type: "Pleadings",
 		description:
@@ -16,7 +16,7 @@ const something = [
 		id: uuidv4(),
 		caseId: "ABC-123",
 		startTime: dayjs(),
-		endTime: "15:00",
+		endTime: dayjs(),
 		unit: 0.5,
 		type: "Pleadings",
 		description:

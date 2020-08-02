@@ -64,7 +64,6 @@ function App() {
 		};
 
 		const updateNewStartTime = (e) => {
-			console.log("hello" + e.target.value);
 			setNewEntry({
 				caseId: newEntry.caseId,
 				startTime: setDateAndTimeWithDatetimeString(e.target.value),
@@ -79,7 +78,7 @@ function App() {
 			setNewEntry({
 				caseId: newEntry.caseId,
 				startTime: newEntry.startTime,
-				endTime: e.target.value,
+				endTime: setDateAndTimeWithDatetimeString(e.target.value),
 				unit: newEntry.unit,
 				type: newEntry.type,
 				description: newEntry.description,
@@ -261,7 +260,7 @@ function App() {
 					<div className="Time-entry" key={entry.id}>
 						<div>
 							<div>{formatDateToDatetime(entry.startTime)}</div>
-							<div>{entry.endTime}</div>
+							<div>{entry.endTime && formatDateToDatetime(entry.endTime)}</div>
 						</div>
 						<div>{entry.unit} u</div>
 						<div>{entry.caseId}</div>
