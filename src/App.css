@@ -202,3 +202,8 @@ button {
 	font-style: italic;
 	margin-top: 20px;
 }
+
+.vertically-center {
+	display: flex;
+	align-items: center;
+}

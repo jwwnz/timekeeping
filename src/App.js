@@ -292,9 +292,9 @@ function App() {
 							<div>{formatDateToDatetime(entry.startTime)}</div>
 							<div>{entry.endTime && formatDateToDatetime(entry.endTime)}</div>
 						</div>
-						<div>{entry.unit} u</div>
-						<div>{entry.caseId}</div>
-						<div>{entry.type}</div>
+						<div className="vertically-center">{entry.unit} u</div>
+						<div className="vertically-center">{entry.caseId}</div>
+						<div className="vertically-center">{entry.type}</div>
 						<button
 							onClick={() => deleteEntry(entry.id)}
 							className="button-icon"

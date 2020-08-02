@@ -21,13 +21,8 @@ const formatDateToDatetime = (date) => date.format("HH:mm");
 
 // This only calculates hours and minutes
 const calculateUnits = (startTime, endTime) => {
-	const unitHourDifference = endTime.hour() - startTime.hour();
-	const unitMinuteDifference = endTime.minute() - startTime.minute();
-
-	const finalTotalMinutesDifference =
-		unitHourDifference * 60 + unitMinuteDifference;
-
-	const units = finalTotalMinutesDifference / 60;
+	const minutes = endTime.diff(startTime, "minute");
+	const units = minutes / 60;
 
 	return units.toFixed(1);
 };
