@@ -9,13 +9,10 @@ const getCurrentDateTime = () => {
 // Set Date and time using datetime string (HH:mm)
 const setDateAndTimeWithDatetimeString = (datetimeString) => {
 	const datetimeArray = datetimeString.split(":");
-	// let returnDateAndTime = dayjs();
-	console.log(datetimeArray[0]);
-	let returnDateAndTime = dayjs().hour(datetimeArray[0]);
-	console.log(returnDateAndTime);
-	returnDateAndTime.minute(datetimeArray[1]);
-	console.log("Date time is" + datetimeString);
-	console.log(returnDateAndTime);
+	let returnDateAndTime = dayjs()
+		.hour(datetimeArray[0])
+		.minute(datetimeArray[1])
+		.second(0);
 
 	return dayjs(returnDateAndTime);
 };
