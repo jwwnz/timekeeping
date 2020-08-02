@@ -50,7 +50,7 @@ function App() {
 
 	const Modal = () => {
 		const [newEntry, setNewEntry] = useState({
-			id: null,
+			id: uuidv4(),
 			caseId: null,
 			startTime: null,
 			endTime: null,
@@ -60,13 +60,16 @@ function App() {
 		});
 
 		const addEntry = () => {
-			setNewEntry({ ...newEntry, id: uuidv4() });
+			const newId = uuidv4();
+			console.log("Hello" + newId);
+			setNewEntry({ ...newEntry, id: newId });
 			setEntries([...entries, newEntry]);
 			toggleEditModal();
 		};
 
 		const updateNewStartTime = (e) => {
 			setNewEntry({
+				id: newEntry.id,
 				caseId: newEntry.caseId,
 				startTime: setDateAndTimeWithDatetimeString(e.target.value),
 				endTime: newEntry.endTime,
@@ -80,6 +83,7 @@ function App() {
 			const newEndTime = setDateAndTimeWithDatetimeString(e.target.value);
 
 			setNewEntry({
+				id: newEntry.id,
 				caseId: newEntry.caseId,
 				startTime: newEntry.startTime,
 				endTime: newEndTime,
@@ -93,6 +97,7 @@ function App() {
 			const unit = e.target.value;
 
 			setNewEntry({
+				id: newEntry.id,
 				caseId: newEntry.caseId,
 				startTime: newEntry.startTime,
 				endTime: addUnitsToTime(newEntry.startTime, unit),
@@ -104,6 +109,7 @@ function App() {
 
 		const updateNewCaseId = (e) => {
 			setNewEntry({
+				id: newEntry.id,
 				caseId: e.target.value,
 				startTime: newEntry.startTime,
 				endTime: newEntry.endTime,
@@ -115,6 +121,7 @@ function App() {
 
 		const updateNewType = (e) => {
 			setNewEntry({
+				id: newEntry.id,
 				caseId: newEntry.caseId,
 				startTime: newEntry.startTime,
 				endTime: newEntry.endTime,
@@ -126,6 +133,7 @@ function App() {
 
 		const updateNewDescription = (e) => {
 			setNewEntry({
+				id: newEntry.id,
 				caseId: newEntry.caseId,
 				startTime: newEntry.startTime,
 				endTime: newEntry.endTime,
