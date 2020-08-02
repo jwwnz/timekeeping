@@ -35,6 +35,22 @@ const addUnitsToTime = (startTime, units) => {
 	return startTime.add(units, "hour");
 };
 
+// const calculateEndTimeFromSecondsElapsed = (startTime, seconds) => {
+// 	return startTime.add(seconds, "second");
+// };
+
+function roundUp(num, precision) {
+	precision = Math.pow(10, precision);
+	return Math.ceil(num * precision) / precision;
+}
+
+const calculateUnitsFromSecondsElapsed = (seconds) => {
+	const unitsNotRounded = seconds / 60 / 60;
+
+	const units = roundUp(unitsNotRounded, 1);
+	return units;
+};
+
 // Calculate period between two time.
 
 // Calculate units of specified period
@@ -44,6 +60,8 @@ const addUnitsToTime = (startTime, units) => {
 export {
 	addUnitsToTime,
 	calculateUnits,
+	calculateUnitsFromSecondsElapsed,
+	// calculateEndTimeFromSecondsElapsed,
 	formatDateToDatetime,
 	getCurrentDateTime,
 	setDateAndTimeWithDatetimeString,

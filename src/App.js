@@ -6,6 +6,7 @@ import { something } from "./testData.js";
 import {
 	addUnitsToTime,
 	calculateUnits,
+	calculateUnitsFromSecondsElapsed,
 	getCurrentDateTime,
 	setDateAndTimeWithDatetimeString,
 	formatDateToDatetime,
@@ -20,22 +21,8 @@ const Navbar = () => (
 function App() {
 	const [entries, setEntries] = useState(something);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [timeElapsed, setTimeElapsed] = useState(0);
-	const [timerIsOn, setTimerIsOn] = useState(false);
+
 	const [validationMessage, setValidationMessage] = useState(null);
-
-	useEffect(() => {
-		if (!timerIsOn) return;
-
-		const timer =
-			timerIsOn &&
-			setInterval(() => {
-				setTimeElapsed(timeElapsed + 1);
-				console.log(timeElapsed);
-			}, 1000);
-
-		return () => clearInterval(timer);
-	}, [timerIsOn, timeElapsed]);
 
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
@@ -58,6 +45,21 @@ function App() {
 			type: null,
 			description: null,
 		});
+		const [timeElapsed, setTimeElapsed] = useState(0);
+		const [timerIsOn, setTimerIsOn] = useState(false);
+
+		useEffect(() => {
+			if (!timerIsOn) return;
+
+			const timer =
+				timerIsOn &&
+				setInterval(() => {
+					setTimeElapsed(timeElapsed + 1);
+					console.log(timeElapsed);
+				}, 1000);
+
+			return () => clearInterval(timer);
+		}, [timerIsOn, timeElapsed]);
 
 		const addEntry = () => {
 			if (validateAllItemsEntered()) {
@@ -160,6 +162,23 @@ function App() {
 			setTimerIsOn(true);
 		};
 
+		const stopTimer = () => {
+			console.log("Time elapsed in seconds " + timeElapsed);
+			console.log("EndTime");
+			console.log(calculateUnitsFromSecondsElapsed(timeElapsed));
+			const unit = calculateUnitsFromSecondsElapsed(timeElapsed);
+			setNewEntry({
+				id: newEntry.id,
+				caseId: newEntry.caseId,
+				startTime: newEntry.startTime,
+				endTime: addUnitsToTime(newEntry.startTime, unit),
+				unit,
+				type: newEntry.type,
+				description: newEntry.description,
+			});
+			setTimerIsOn(false);
+		};
+
 		return (
 			<div id="myModal" className="modal">
 				<div className="modal-content">
@@ -169,7 +188,7 @@ function App() {
 					<div className="input-content">
 						{timerIsOn ? (
 							<button
-								onClick={() => setTimerIsOn(false)}
+								onClick={stopTimer}
 								className="button-timer-stop"
 							>{`Stop ${timeElapsed}`}</button>
 						) : (
