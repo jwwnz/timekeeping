@@ -32,6 +32,10 @@ const calculateUnits = (startTime, endTime) => {
 	return units.toFixed(1);
 };
 
+const addUnitsToTime = (startTime, units) => {
+	return startTime.add(units, "hour");
+};
+
 // Add time to existing time
 // Calculates to minutes only
 const addTimeAndReturnEndTime = (existingTime, periodToAdd) => {
@@ -54,6 +58,7 @@ const addTimeAndReturnEndTime = (existingTime, periodToAdd) => {
 
 export {
 	addTimeAndReturnEndTime,
+	addUnitsToTime,
 	calculateUnits,
 	formatDateToDatetime,
 	getCurrentDateTime,
