@@ -23,6 +23,7 @@ function App() {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [timeElapsed, setTimeElapsed] = useState(0);
 	const [timerIsOn, setTimerIsOn] = useState(false);
+	const [validationMessage, setValidationMessage] = useState(null);
 
 	useEffect(() => {
 		if (!timerIsOn) return;
@@ -60,11 +61,13 @@ function App() {
 		});
 
 		const addEntry = () => {
-			const newId = uuidv4();
-			console.log("Hello" + newId);
-			setNewEntry({ ...newEntry, id: newId });
-			setEntries([...entries, newEntry]);
-			toggleEditModal();
+			if (validateAllItemsEntered()) {
+				setNewEntry({ ...newEntry });
+				setEntries([...entries, newEntry]);
+				toggleEditModal();
+			} else {
+				console.warn("You have not finished");
+			}
 		};
 
 		const updateNewStartTime = (e) => {
@@ -141,6 +144,16 @@ function App() {
 				type: newEntry.type,
 				description: e.target.value,
 			});
+		};
+
+		const validateAllItemsEntered = () => {
+			const { caseId, startTime, endTime, unit, type, description } = newEntry;
+
+			if (caseId && startTime && endTime && unit && type && description) {
+				return true;
+			}
+			setValidationMessage("You have not filled in all the fields");
+			return false;
 		};
 
 		return (
@@ -255,8 +268,11 @@ function App() {
 								/>
 							</div>
 						</div>
+						{validationMessage && (
+							<div className="validation-message">{validationMessage}</div>
+						)}
 						<button onClick={addEntry} className="button-save">
-							Save
+							Save&nbsp;<i className="fa fa-save"></i>
 						</button>
 					</div>
 				</div>
