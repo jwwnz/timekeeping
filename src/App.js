@@ -12,15 +12,12 @@ import {
 	formatDateToDatetime,
 } from "./helpers/time.js";
 
-const Navbar = () => (
-	<header className="App-header">
-		<div>Loci</div>
-	</header>
-);
-
 function App() {
 	const [entries, setEntries] = useState(something);
 	const [modalOpen, setModalOpen] = useState(false);
+	const [settingModalOpen, setSettingModalOpen] = useState(false);
+	const [name, setName] = useState(null);
+	const [hourlyRate, setHourlyRate] = useState(200);
 
 	const [validationMessage, setValidationMessage] = useState(null);
 
@@ -28,11 +25,69 @@ function App() {
 		setModalOpen(!modalOpen);
 	};
 
+	const toggleSettingsModal = () => {
+		setSettingModalOpen(!settingModalOpen);
+	};
+
 	const deleteEntry = (uuid) => {
 		const arrayWithoutDeletedEntry = entries.filter((entry) => {
 			return entry.id !== uuid;
 		});
 		setEntries(arrayWithoutDeletedEntry);
+	};
+
+	const Navbar = () => (
+		<header className="App-header">
+			<div>
+				<div>Loci {name && name}</div>
+				<button
+					onClick={toggleSettingsModal}
+					className="button-icon navbar-settings-button"
+				>
+					<span style={{ fontSize: "20px" }}>${hourlyRate}&nbsp;</span>
+					<i className="fa fa-cog"></i>
+				</button>
+			</div>
+		</header>
+	);
+
+	const SettingsModal = () => {
+		const [tempName, setTempName] = useState(null);
+		const [tempHourlyRate, setTempHourlyRate] = useState(200);
+
+		const saveSettings = () => {
+			setName(tempName);
+			setHourlyRate(tempHourlyRate);
+			toggleSettingsModal();
+		};
+
+		return (
+			<div className="modal">
+				<div className="setting-modal-content">
+					<span className="close" onClick={toggleSettingsModal}>
+						&times;
+					</span>
+					<h1>Settings</h1>
+					<h3>Name</h3>
+					<input
+						type="text"
+						className="input input-short center-block"
+						value={tempName}
+						onChange={(e) => setTempName(e.target.value)}
+					></input>
+					<h3>Hourly Rate</h3>
+					<input
+						type="number"
+						className="input input-short center-block"
+						value={tempHourlyRate}
+						onChange={(e) => setTempHourlyRate(e.target.value)}
+					></input>
+					<button onClick={saveSettings} className="button-save">
+						Save&nbsp;<i className="fa fa-save"></i>
+					</button>
+				</div>
+			</div>
+		);
 	};
 
 	const Modal = () => {
@@ -254,8 +309,7 @@ function App() {
 								type="number"
 								id="earnings"
 								name="earnings"
-								value={newEntry.unit}
-								onChange={updateNewUnit}
+								value={newEntry.unit * hourlyRate}
 								disabled
 							/>
 						</div>
@@ -343,6 +397,7 @@ function App() {
 
 			{/* This is modal content created by the button */}
 			{modalOpen && <Modal />}
+			{settingModalOpen && <SettingsModal />}
 		</div>
 	);
 }

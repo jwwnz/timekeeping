@@ -144,6 +144,18 @@
 	-webkit-appearance: none;
 }
 
+.setting-modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 10px 20px 40px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+	/* height: 90%; */
+	border: none;
+	box-shadow: 2px 4px 5px #c4c4c4;
+	-webkit-appearance: none;
+}
+
 /* The Close Button */
 .close {
 	color: #aaa;
@@ -206,4 +218,19 @@ button {
 .vertically-center {
 	margin-top: auto;
 	margin-bottom: auto;
+}
+
+.navbar-settings-button {
+	position: absolute;
+	right: 10px;
+	top: 20px;
+	color: white;
+	background-color: rgba(0, 0, 0, 0);
+	font-size: 30px;
+}
+
+.center-block {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
 }
