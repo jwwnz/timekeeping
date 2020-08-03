@@ -210,6 +210,7 @@ function App() {
 									newEntry.startTime !== null &&
 									formatDateToDatetime(newEntry.startTime)
 								}
+								disabled={timerIsOn}
 							/>
 						</div>
 						<div className="input-pair">
@@ -220,6 +221,7 @@ function App() {
 								id="time-end"
 								name="time-end"
 								onChange={updateNewEndTime}
+								disabled={timerIsOn}
 							/>
 						</div>
 						<div className="input-pair">
@@ -242,17 +244,19 @@ function App() {
 								name="unit"
 								value={newEntry.unit}
 								onChange={updateNewUnit}
+								disabled={timerIsOn}
 							/>
 						</div>
 						<div className="input-pair">
-							<label htmlFor="unit">Total Earnings:</label>
+							<label htmlFor="earnings">Total Earnings:</label>
 							<input
 								className="input input-short"
 								type="number"
-								id="unit"
-								name="unit"
+								id="earnings"
+								name="earnings"
 								value={newEntry.unit}
 								onChange={updateNewUnit}
+								disabled
 							/>
 						</div>
 
