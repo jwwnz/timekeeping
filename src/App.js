@@ -272,12 +272,19 @@ function App() {
 								<label htmlFor="action-type">Category:</label>
 								<input
 									className="input input-short input-case-group-color"
-									type="text"
-									id="type"
-									name="action-type"
-									placeholder="Type"
+									list="category"
+									name="category"
+									placeholder="Category"
 									onChange={updateNewType}
 								/>
+								<datalist id="category">
+									<option value="Pleadings" />
+									<option value="Meeting" />
+									<option value="Court appearance" />
+									<option value="Email" />
+									<option value="Call" />
+									<option value="Letter" />
+								</datalist>
 							</div>
 							<div className="input-description-pair">
 								<label htmlFor="case-description">Description:</label>
