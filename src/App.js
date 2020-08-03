@@ -19,8 +19,6 @@ function App() {
 	const [name, setName] = useState(null);
 	const [hourlyRate, setHourlyRate] = useState(200);
 
-	const [validationMessage, setValidationMessage] = useState(null);
-
 	const toggleEditModal = () => {
 		setModalOpen(!modalOpen);
 	};
@@ -44,7 +42,7 @@ function App() {
 					onClick={toggleSettingsModal}
 					className="button-icon navbar-settings-button"
 				>
-					<span style={{ fontSize: "20px" }}>${hourlyRate}&nbsp;</span>
+					<span style={{ fontSize: "20px" }}>${hourlyRate} ph&nbsp;</span>
 					<i className="fa fa-cog"></i>
 				</button>
 			</div>
@@ -102,6 +100,7 @@ function App() {
 		});
 		const [timeElapsed, setTimeElapsed] = useState(0);
 		const [timerIsOn, setTimerIsOn] = useState(false);
+		const [validationMessage, setValidationMessage] = useState(null);
 
 		useEffect(() => {
 			if (!timerIsOn) return;
@@ -117,11 +116,14 @@ function App() {
 		}, [timerIsOn, timeElapsed]);
 
 		const addEntry = () => {
+			console.log(newEntry);
 			if (validateAllItemsEntered()) {
-				setNewEntry({ ...newEntry });
+				console.log(newEntry);
+				// setNewEntry({ ...newEntry });
 				setEntries([...entries, newEntry]);
 				toggleEditModal();
 			} else {
+				console.log(newEntry);
 				console.warn("You have not finished");
 			}
 		};
