@@ -7,6 +7,7 @@ import {
 	addUnitsToTime,
 	calculateUnits,
 	calculateUnitsFromSecondsElapsed,
+	calculateDifferenceBetweenStartAndEnd,
 	getCurrentDateTime,
 	setDateAndTimeWithDatetimeString,
 	formatDateToDatetime,
@@ -16,7 +17,7 @@ function App() {
 	const [entries, setEntries] = useState(something);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [settingModalOpen, setSettingModalOpen] = useState(false);
-	const [name, setName] = useState(null);
+	const [name, setName] = useState("");
 	const [hourlyRate, setHourlyRate] = useState(200);
 
 	const toggleEditModal = () => {
@@ -152,6 +153,11 @@ function App() {
 				type: newEntry.type,
 				description: newEntry.description,
 			});
+
+			setTimeElapsed(
+				calculateDifferenceBetweenStartAndEnd(newEntry.startTime, newEndTime) *
+					60
+			);
 		};
 
 		const updateNewUnit = (e) => {
@@ -278,6 +284,11 @@ function App() {
 								id="time-end"
 								name="time-end"
 								onChange={updateNewEndTime}
+								value={
+									newEntry.endTime !== undefined &&
+									newEntry.endTime !== null &&
+									formatDateToDatetime(newEntry.endTime)
+								}
 								disabled={timerIsOn}
 							/>
 						</div>
@@ -288,7 +299,7 @@ function App() {
 								type="text"
 								id="time-elapsed"
 								name="time-elapsed"
-								value={newEntry.unit * 60 + " Minutes"}
+								value={`${(timeElapsed / 60).toFixed(1)} min`}
 								disabled
 							/>
 						</div>

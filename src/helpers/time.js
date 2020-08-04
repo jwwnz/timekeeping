@@ -35,6 +35,10 @@ const addUnitsToTime = (startTime, units) => {
 	return startTime.add(units, "hour");
 };
 
+const calculateDifferenceBetweenStartAndEnd = (startTime, endTime) => {
+	return endTime.diff(startTime, "minute");
+};
+
 // const calculateEndTimeFromSecondsElapsed = (startTime, seconds) => {
 // 	return startTime.add(seconds, "second");
 // };
@@ -61,7 +65,7 @@ export {
 	addUnitsToTime,
 	calculateUnits,
 	calculateUnitsFromSecondsElapsed,
-	// calculateEndTimeFromSecondsElapsed,
+	calculateDifferenceBetweenStartAndEnd,
 	formatDateToDatetime,
 	getCurrentDateTime,
 	setDateAndTimeWithDatetimeString,
