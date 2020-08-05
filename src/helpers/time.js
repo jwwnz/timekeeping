@@ -21,8 +21,6 @@ const formatDateToDatetime = (date) => date.format("HH:mm");
 
 // This only calculates hours and minutes
 const calculateUnits = (startTime, endTime) => {
-	console.log("endtime");
-	console.log(endTime);
 	if (!startTime || !endTime) return 0;
 
 	const minutes = endTime.diff(startTime, "minute");
@@ -39,10 +37,6 @@ const calculateDifferenceBetweenStartAndEnd = (startTime, endTime) => {
 	return endTime.diff(startTime, "minute");
 };
 
-// const calculateEndTimeFromSecondsElapsed = (startTime, seconds) => {
-// 	return startTime.add(seconds, "second");
-// };
-
 function roundUp(num, precision) {
 	precision = Math.pow(10, precision);
 	return Math.ceil(num * precision) / precision;
@@ -54,12 +48,6 @@ const calculateUnitsFromSecondsElapsed = (seconds) => {
 	const units = roundUp(unitsNotRounded, 1);
 	return units;
 };
-
-// Calculate period between two time.
-
-// Calculate units of specified period
-
-// Get time for a particular day only.
 
 export {
 	addUnitsToTime,

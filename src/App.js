@@ -110,21 +110,16 @@ function App() {
 				timerIsOn &&
 				setInterval(() => {
 					setTimeElapsed(timeElapsed + 1);
-					console.log(timeElapsed);
 				}, 1000);
 
 			return () => clearInterval(timer);
 		}, [timerIsOn, timeElapsed]);
 
 		const addEntry = () => {
-			console.log(newEntry);
 			if (validateAllItemsEntered()) {
-				console.log(newEntry);
-				// setNewEntry({ ...newEntry });
 				setEntries([...entries, newEntry]);
 				toggleEditModal();
 			} else {
-				console.log(newEntry);
 				console.warn("You have not finished");
 			}
 		};
@@ -221,14 +216,10 @@ function App() {
 		};
 
 		const startTimer = () => {
-			console.log("Timer started");
 			setTimerIsOn(true);
 		};
 
 		const stopTimer = () => {
-			console.log("Time elapsed in seconds " + timeElapsed);
-			console.log("EndTime");
-			console.log(calculateUnitsFromSecondsElapsed(timeElapsed));
 			const unit = calculateUnitsFromSecondsElapsed(timeElapsed);
 			setNewEntry({
 				id: newEntry.id,
