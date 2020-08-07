@@ -16,13 +16,13 @@ import {
 function App() {
 	const [entries, setEntries] = useState(something);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [isModalNew, setIsModalNew] = useState(null);
+	const [isModalNew, setIsModalNew] = useState(undefined);
 	const [settingModalOpen, setSettingModalOpen] = useState(false);
 	const [name, setName] = useState("");
 	const [hourlyRate, setHourlyRate] = useState(200);
 
 	const toggleAddModal = () => {
-		setIsModalNew(null);
+		setIsModalNew(undefined);
 		setModalOpen(!modalOpen);
 	};
 
@@ -263,16 +263,17 @@ function App() {
 						&times;
 					</span>
 					<div className="input-content">
-						{timerIsOn ? (
-							<button
-								onClick={stopTimer}
-								className="button-timer-stop"
-							>{`Stop ${timeElapsed}`}</button>
-						) : (
-							<button onClick={startTimer} className="button-timer-start">
-								{timeElapsed > 0 ? `Continue ${timeElapsed}` : "Start"}
-							</button>
-						)}
+						{!isEdit &&
+							(timerIsOn ? (
+								<button
+									onClick={stopTimer}
+									className="button-timer-stop"
+								>{`Stop ${timeElapsed}`}</button>
+							) : (
+								<button onClick={startTimer} className="button-timer-start">
+									{timeElapsed > 0 ? `Continue ${timeElapsed}` : "Start"}
+								</button>
+							))}
 
 						<div className="input-pair">
 							<label htmlFor="time-start">Start time:</label>
@@ -350,6 +351,7 @@ function App() {
 									id="case-id"
 									name="case-id"
 									placeholder="case id"
+									value={newEntry.caseId ? newEntry.caseId : ""}
 									onChange={updateNewCaseId}
 								/>
 							</div>
@@ -360,6 +362,7 @@ function App() {
 									list="category"
 									name="category"
 									placeholder="Category"
+									value={newEntry.type ? newEntry.type : ""}
 									onChange={updateNewType}
 								/>
 								<datalist id="category">
@@ -378,6 +381,7 @@ function App() {
 									name="case-description"
 									cols="40"
 									rows="5"
+									value={newEntry.description ? newEntry.description : ""}
 									onChange={updateNewDescription}
 								/>
 							</div>
