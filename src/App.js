@@ -16,11 +16,19 @@ import {
 function App() {
 	const [entries, setEntries] = useState(something);
 	const [modalOpen, setModalOpen] = useState(false);
+	const [isModalNew, setIsModalNew] = useState(null);
 	const [settingModalOpen, setSettingModalOpen] = useState(false);
 	const [name, setName] = useState("");
 	const [hourlyRate, setHourlyRate] = useState(200);
 
-	const toggleEditModal = () => {
+	const toggleAddModal = () => {
+		setIsModalNew(null);
+		setModalOpen(!modalOpen);
+	};
+
+	const toggleEditModal = (entry) => {
+		console.log(entry);
+		setIsModalNew(entry);
 		setModalOpen(!modalOpen);
 	};
 
@@ -89,19 +97,23 @@ function App() {
 		);
 	};
 
-	const Modal = () => {
-		const [newEntry, setNewEntry] = useState({
-			id: uuidv4(),
-			caseId: null,
-			startTime: getCurrentDateTime(),
-			endTime: null,
-			unit: 0,
-			type: null,
-			description: null,
-		});
+	const Modal = ({ entry }) => {
+		const entryContent = entry
+			? entry
+			: {
+					id: uuidv4(),
+					caseId: null,
+					startTime: getCurrentDateTime(),
+					endTime: null,
+					unit: 0,
+					type: null,
+					description: null,
+			  };
+		const [newEntry, setNewEntry] = useState(entryContent);
 		const [timeElapsed, setTimeElapsed] = useState(0);
 		const [timerIsOn, setTimerIsOn] = useState(false);
 		const [validationMessage, setValidationMessage] = useState(null);
+		const [isEdit] = useState(entry ? true : false);
 
 		useEffect(() => {
 			if (!timerIsOn) return;
@@ -117,8 +129,19 @@ function App() {
 
 		const addEntry = () => {
 			if (validateAllItemsEntered()) {
-				setEntries([...entries, newEntry]);
-				toggleEditModal();
+				if (isEdit) {
+					for (let i = 0; i < entries.length; i++) {
+						if (entries[i].id === newEntry.id) {
+							entries[i] = newEntry;
+							setEntries(entries);
+							toggleAddModal();
+							return;
+						}
+					}
+				} else {
+					setEntries([...entries, newEntry]);
+					toggleAddModal();
+				}
 			} else {
 				console.warn("You have not finished");
 			}
@@ -236,7 +259,7 @@ function App() {
 		return (
 			<div id="myModal" className="modal">
 				<div className="modal-content">
-					<span className="close" onClick={toggleEditModal}>
+					<span className="close" onClick={toggleAddModal}>
 						&times;
 					</span>
 					<div className="input-content">
@@ -371,6 +394,9 @@ function App() {
 		);
 	};
 
+	const DeterminedModal = () =>
+		isModalNew ? <Modal entry={isModalNew} /> : <Modal />;
+
 	return (
 		<div className="App">
 			<Navbar />
@@ -378,7 +404,11 @@ function App() {
 			<h3>{getCurrentDateTime().format("dddd D MMMM YYYY")}</h3>
 			{entries.map((entry) => {
 				return (
-					<div className="Time-entry" key={entry.id}>
+					<div
+						className="Time-entry"
+						key={entry.id}
+						onClick={() => toggleEditModal(entry)}
+					>
 						<div className="vertically-center">
 							<div>{formatDateToDatetime(entry.startTime)}</div>
 							<div>{entry.endTime && formatDateToDatetime(entry.endTime)}</div>
@@ -395,12 +425,12 @@ function App() {
 					</div>
 				);
 			})}
-			<button onClick={toggleEditModal} className="button-circle">
+			<button onClick={toggleAddModal} className="button-circle">
 				+
 			</button>
 
 			{/* This is modal content created by the button */}
-			{modalOpen && <Modal />}
+			{modalOpen && <DeterminedModal />}
 			{settingModalOpen && <SettingsModal />}
 		</div>
 	);
