@@ -47,7 +47,7 @@
 }
 
 .Time-entry:active {
-	box-shadow: 0 0 0 white;
+	box-shadow: 2px 4px 5px white;
 	margin: 15px 10px 5px 10px;
 	background-color: #e7e7e7;
 }
