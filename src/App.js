@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import "font-awesome/css/font-awesome.min.css";
 import { v4 as uuidv4 } from "uuid";
@@ -20,6 +20,8 @@ function App() {
 	const [settingModalOpen, setSettingModalOpen] = useState(false);
 	const [name, setName] = useState("");
 	const [hourlyRate, setHourlyRate] = useState(200);
+
+	const addButtonRef = useRef(null);
 
 	const toggleAddModal = () => {
 		setIsModalNew(undefined);
@@ -414,6 +416,12 @@ function App() {
 		);
 	};
 
+	const someFunAnimation = () => {
+		const wrapper = addButtonRef.current;
+
+		wrapper.classList.toggle("rotate-button");
+	};
+
 	return (
 		<div className="App">
 			<Navbar />
@@ -446,7 +454,13 @@ function App() {
 						</div>
 					);
 				})}
-				<button onClick={toggleAddModal} className="button-circle">
+				<button
+					onClick={toggleAddModal}
+					id="thisisatest"
+					className="button-circle"
+					ref={addButtonRef}
+					onTouchStart={someFunAnimation}
+				>
 					+
 				</button>
 			</div>

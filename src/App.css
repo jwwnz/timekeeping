@@ -254,3 +254,8 @@ button {
 	padding: 10%;
 	width: 80%;
 }
+
+.rotate-button {
+	transition: transform 4s;
+	transform: rotate(360deg);
+}
