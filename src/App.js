@@ -331,7 +331,7 @@ function App() {
 							/>
 						</div>
 						<div className="input-pair">
-							<label htmlFor="earnings">Total Earnings:</label>
+							<label htmlFor="earnings">Total Earnings: $</label>
 							<input
 								className="input input-short"
 								type="number"
@@ -401,41 +401,57 @@ function App() {
 	const DeterminedModal = () =>
 		isModalNew ? <Modal entry={isModalNew} /> : <Modal />;
 
+	const FooterContent = () => {
+		let timeWorked = 0;
+		entries.forEach((entry) => {
+			timeWorked += parseFloat(entry.unit);
+		});
+		return (
+			<div className="footer">
+				You have currently worked <strong>{timeWorked}</strong> hour units and
+				earned <strong>${timeWorked * hourlyRate}</strong>
+			</div>
+		);
+	};
+
 	return (
 		<div className="App">
 			<Navbar />
-			{/* change to dynamic date */}
-			<h3>{getCurrentDateTime().format("dddd D MMMM YYYY")}</h3>
-			{entries.map((entry) => {
-				return (
-					<div className="Time-entry" key={entry.id}>
-						<div
-							className="Time-entry-panel-1"
-							onClick={() => toggleEditModal(entry)}
-						>
-							<div className="vertically-center">
-								<div>{formatDateToDatetime(entry.startTime)}</div>
-								<div>
-									{entry.endTime && formatDateToDatetime(entry.endTime)}
+			<div className="body">
+				<h3>{getCurrentDateTime().format("dddd D MMMM YYYY")}</h3>
+				{entries.map((entry) => {
+					return (
+						<div className="Time-entry" key={entry.id}>
+							<div
+								className="Time-entry-panel-1"
+								onClick={() => toggleEditModal(entry)}
+							>
+								<div className="vertically-center">
+									<div>{formatDateToDatetime(entry.startTime)}</div>
+									<div>
+										{entry.endTime && formatDateToDatetime(entry.endTime)}
+									</div>
 								</div>
+								<div className="vertically-center">{entry.unit} u</div>
+								<div className="vertically-center">{entry.caseId}</div>
+								<div className="vertically-center">{entry.type}</div>
 							</div>
-							<div className="vertically-center">{entry.unit} u</div>
-							<div className="vertically-center">{entry.caseId}</div>
-							<div className="vertically-center">{entry.type}</div>
-						</div>
 
-						<button
-							onClick={() => deleteEntry(entry.id)}
-							className="button-icon"
-						>
-							<i className="fa fa-trash"></i>
-						</button>
-					</div>
-				);
-			})}
-			<button onClick={toggleAddModal} className="button-circle">
-				+
-			</button>
+							<button
+								onClick={() => deleteEntry(entry.id)}
+								className="button-icon"
+							>
+								<i className="fa fa-trash"></i>
+							</button>
+						</div>
+					);
+				})}
+				<button onClick={toggleAddModal} className="button-circle">
+					+
+				</button>
+			</div>
+
+			<FooterContent />
 
 			{/* This is modal content created by the button */}
 			{modalOpen && <DeterminedModal />}

@@ -1,6 +1,7 @@
 .App {
 	text-align: center;
 	font-family: "Playfair Display", serif;
+	height: 100%;
 }
 
 .App-logo {
@@ -239,4 +240,17 @@ button {
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
+}
+
+.body {
+	display: block;
+	height: 80%;
+	overflow-y: auto;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	padding: 10%;
+	width: 80%;
 }
