@@ -408,18 +408,22 @@ function App() {
 			<h3>{getCurrentDateTime().format("dddd D MMMM YYYY")}</h3>
 			{entries.map((entry) => {
 				return (
-					<div
-						className="Time-entry"
-						key={entry.id}
-						onClick={() => toggleEditModal(entry)}
-					>
-						<div className="vertically-center">
-							<div>{formatDateToDatetime(entry.startTime)}</div>
-							<div>{entry.endTime && formatDateToDatetime(entry.endTime)}</div>
+					<div className="Time-entry" key={entry.id}>
+						<div
+							className="Time-entry-panel-1"
+							onClick={() => toggleEditModal(entry)}
+						>
+							<div className="vertically-center">
+								<div>{formatDateToDatetime(entry.startTime)}</div>
+								<div>
+									{entry.endTime && formatDateToDatetime(entry.endTime)}
+								</div>
+							</div>
+							<div className="vertically-center">{entry.unit} u</div>
+							<div className="vertically-center">{entry.caseId}</div>
+							<div className="vertically-center">{entry.type}</div>
 						</div>
-						<div className="vertically-center">{entry.unit} u</div>
-						<div className="vertically-center">{entry.caseId}</div>
-						<div className="vertically-center">{entry.type}</div>
+
 						<button
 							onClick={() => deleteEntry(entry.id)}
 							className="button-icon"
