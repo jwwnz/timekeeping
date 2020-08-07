@@ -408,8 +408,8 @@ function App() {
 		});
 		return (
 			<div className="footer">
-				You have currently worked <strong>{timeWorked}</strong> hour units and
-				earned <strong>${timeWorked * hourlyRate}</strong>
+				Today you worked <strong>{timeWorked}</strong> hour units and earned{" "}
+				<strong>${timeWorked * hourlyRate}</strong>
 			</div>
 		);
 	};
