@@ -255,7 +255,7 @@ button {
 	width: 80%;
 }
 
-.rotate-button {
+.button-circle:active {
 	transition: transform 4s;
 	transform: rotate(360deg);
 }
